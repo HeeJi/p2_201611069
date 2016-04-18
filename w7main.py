@@ -14,7 +14,7 @@ def drawSquareAtSave(size, pos):
  return tracks
 
 def lab7a():
- mytrack=drawSquareAtSave(150, (100,100))
+ mytrack=drawSquareAtSave(150, (-150,-150))
  print mytrack
 
 tracks=dict()
