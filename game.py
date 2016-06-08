@@ -71,10 +71,12 @@ v=random.randrange(-340,340)
 w=random.randrange(-340,340)
 x=random.randrange(-340,340)
 def power():
+ myfile=open('tracks.txt','w')
  tracks=dict()
  tracks=({1:(a,b),2:(c,d),3:(e,f),4:(g,h),5:(i,j),6:(k,l),7:(m,n),8:(o,p),9:(q,r),10:(s,t),11:(u,v),12:(w,x)})
+ myfile.close()
  print 'p means power!'
- for po in range(1,13):
+ for po in range(1,9):
   d2.penup()
   d2.setpos(tracks[po])
   d2.pendown()
@@ -95,11 +97,13 @@ def power():
  d2.home()
  d2.color("Red")
  print 'go to get powers!! red circle means that you get it!!!'
+ print 'whenever you change power red, press key r'
 
 d1.speed(7) 
+d2.speed(10)
 import math
 count=0
-def cleaning():
+def reding():
  (wi,chi)=t1.pos()
  dis_1=0
  dis_1=math.sqrt(math.pow((wi-a),2)+math.pow((chi-(b+20)),2))
@@ -117,14 +121,6 @@ def cleaning():
  dis_7=math.sqrt(math.pow((wi-m),2)+math.pow((chi-(n+20)),2))
  dis_8=0
  dis_8=math.sqrt(math.pow((wi-o),2)+math.pow((chi-(p+20)),2))
- dis_9=0
- dis_9=math.sqrt(math.pow((wi-q),2)+math.pow((chi-(r+20)),2))
- dis_10=0
- dis_10=math.sqrt(math.pow((wi-s),2)+math.pow((chi-(t+20)),2))
- dis_11=0
- dis_11=math.sqrt(math.pow((wi-u),2)+math.pow((chi-(v+20)),2)) 
- dis_12=0
- dis_12=math.sqrt(math.pow((wi-w),2)+math.pow((chi-(x+20)),2))
  global count
  if dis_1<=20:
   print 'you get the first power!'
@@ -190,61 +186,53 @@ def cleaning():
   d2.pendown()
   d2.circle(20)
   count=count+1
- elif dis_9<=20:
-  print 'you get the nineth power!'
-  d2.penup()
-  d2.goto(q,r)
-  d2.setheading(oldheading)
-  d2.pendown()
-  d2.circle(20)
-  count=count+1
- elif dis_10<=20:
-  print 'you get the ten power!'
-  d2.penup()
-  d2.goto(s,t)
-  d2.setheading(oldheading)
-  d2.pendown()
-  d2.circle(20)
-  count=count+1
- elif dis_11<=20:
-  print 'you get the eleven power!'
-  d2.penup()
-  d2.goto(u,v)
-  d2.setheading(oldheading)
-  d2.pendown()
-  d2.circle(20)
-  count=count+1
- elif dis_12<=20:
-  print 'you get the last power!'
-  d2.penup()
-  d2.goto(w,x)
-  d2.setheading(oldheading)
-  d2.pendown()
-  d2.circle(20)
-  count=count+1
  else:
   print 'cheer up!'
  return count
 
 def Drawing():
- if 1<=count<=3:
+ if count==1:   
+  d1.setheading(oldheading)
   Circle()
- elif 4<=count<=6:
+ elif count==2:
+  d1.setheading(oldheading)
   Triangle()
- elif 7<=count<=9:
+ elif count==3: 
+  d1.setheading(oldheading)
   Square()
- elif 10<=count<=12:
+ elif count==4:
+  d1.setheading(oldheading)
   Star()
+ elif count==5:
+  d1.setheading(oldheading)
+  d1.color('Purple')
+  Circle()
+ elif count==6:
+  d1.setheading(oldheading)
+  d1.color('Purple')
+  Triangle()
+ elif count==7:
+  d1.setheading(oldheading)
+  d1.color('Purple')
+  Square()
+ elif count==8:
+  d1.setheading(oldheading)
+  d1.color('Purple')
+  Star()
+  name=raw_input('your name: ')
+  print name, 'got 100!'
+  print 'press q to quit'
+
+def pressR():
+ Drawing()
 
 def pressUp():
  t1.fd(25)
- cleaning()
- Drawing()
+ reding()
 
 def pressDown():
  t1.backward(25)
- cleaning()
- Drawing()
+ reding()
 
 def pressRight():
  t1.right(15)
@@ -252,15 +240,21 @@ def pressRight():
 def pressLeft():
  t1.left(15)
 
+def pressQ():
+ wn.bye()
+
 def mousegoto(x,y):
  t1.setpos(x,y)
- cleaning()
+ reding()
+ t1.setheading(oldheading)
 
 def addKeys():
  wn.onkey(pressUp,'Up')
  wn.onkey(pressDown,'Down')
  wn.onkey(pressRight,'Right')
  wn.onkey(pressLeft,'Left')
+ wn.onkey(pressR,'r')
+ wn.onkey(pressQ,'q')
 
 def addMouse():
  wn.onclick(mousegoto)
@@ -270,6 +264,5 @@ power()
 wn.listen()
 addKeys()
 addMouse()
-Drawing()
 
 turtle.mainloop()
