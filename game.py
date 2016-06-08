@@ -220,8 +220,10 @@ def Drawing():
   d1.color('Purple')
   Star()
   name=raw_input('your name: ')
-  print name, 'got 100!'
+  print 'Good job', name
   print 'press q to quit'
+ else:
+  print 'game over! you lose..'
 
 def pressR():
  Drawing()
